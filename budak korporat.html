@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alvanta corporation gen-z — Mitra Strategis Pertumbuhan Bisnis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#10203A;
+    --ivory:#F6F3EC;
+    --brass:#A9824C;
+    --teal:#1F4B43;
+    --slate:#33404F;
+    --paper:#EFEAE0;
+    --line: rgba(16,32,58,0.14);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--ivory);
+    color:var(--slate);
+    font-family:'Inter', sans-serif;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,h4{
+    font-family:'Fraunces', serif;
+    color:var(--ink);
+    font-weight:500;
+    letter-spacing:-0.01em;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:26px; height:1px;
+    background:var(--brass);
+    display:inline-block;
+  }
+  a{color:inherit;}
+  .container{max-width:1120px; margin:0 auto; padding:0 32px;}
+  section{padding:110px 0;}
+
+  /* ===== NAV ===== */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    background:rgba(246,243,236,0.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:18px 32px; max-width:1120px; margin:0 auto;
+  }
+  .logo{
+    font-family:'Fraunces', serif; font-size:1.25rem; font-weight:600;
+    color:var(--ink); letter-spacing:-0.02em;
+    display:flex; align-items:center; gap:8px;
+  }
+  .logo span{color:var(--brass);}
+  .nav-links{display:flex; gap:34px; font-size:0.88rem; font-weight:500;}
+  .nav-links a{
+    text-decoration:none; color:var(--slate);
+    position:relative; padding-bottom:2px;
+  }
+  .nav-links a::after{
+    content:""; position:absolute; left:0; bottom:-3px;
+    width:0; height:1px; background:var(--brass);
+    transition:width .25s ease;
+  }
+  .nav-links a:hover::after{width:100%;}
+  .nav-cta{
+    background:var(--ink); color:var(--ivory);
+    padding:10px 20px; border-radius:2px;
+    font-size:0.85rem; font-weight:600; text-decoration:none;
+    transition:background .25s ease;
+  }
+  .nav-cta:hover{background:var(--teal);}
+  .burger{display:none;}
+
+  /* ===== HERO ===== */
+  .hero{
+    position:relative;
+    min-height:100vh;
+    display:flex; align-items:center;
+    background:var(--ink);
+    color:var(--paper);
+    overflow:hidden;
+    padding-top:80px;
+  }
+  .hero .container{
+    display:grid; grid-template-columns:1.15fr 0.85fr; gap:60px; align-items:center;
+    position:relative; z-index:2;
+  }
+  .hero-eyebrow{color:var(--brass); opacity:0.95;}
+  .hero-eyebrow::before{background:var(--brass);}
+  .hero h1{
+    font-size:clamp(2.4rem, 4.4vw, 3.8rem);
+    color:var(--ivory);
+    line-height:1.08;
+    margin:22px 0 26px;
+  }
+  .hero h1 em{
+    font-style:italic; color:var(--brass);
+  }
+  .hero p.lead{
+    font-size:1.05rem; color:rgba(239,234,224,0.78);
+    max-width:480px; margin-bottom:36px;
+  }
+  .hero-actions{display:flex; gap:16px; flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--brass); color:var(--ink); font-weight:600;
+    padding:14px 28px; border-radius:2px; text-decoration:none;
+    font-size:0.92rem; transition:transform .2s ease, background .2s ease;
+    display:inline-block;
+  }
+  .btn-primary:hover{transform:translateY(-2px); background:#c69a5f;}
+  .btn-ghost{
+    border:1px solid rgba(239,234,224,0.35); color:var(--ivory);
+    padding:14px 28px; border-radius:2px; text-decoration:none;
+    font-size:0.92rem; font-weight:500; transition:border-color .2s ease;
+  }
+  .btn-ghost:hover{border-color:var(--brass);}
+
+  /* route svg signature */
+  .route-wrap{position:relative; height:420px;}
+  .route-wrap svg{width:100%; height:100%;}
+  .route-path{
+    fill:none; stroke:var(--brass); stroke-width:1.6;
+    stroke-dasharray:900; stroke-dashoffset:900;
+    animation:draw 2.6s ease forwards 0.4s;
+  }
+  .route-dot{ fill:var(--brass); opacity:0; animation:fadein .6s ease forwards; }
+  .route-dot.d1{animation-delay:1.1s;}
+  .route-dot.d2{animation-delay:1.9s;}
+  .route-dot.d3{animation-delay:2.7s;}
+  .route-label{
+    font-family:'IBM Plex Mono', monospace; font-size:10px;
+    fill:rgba(239,234,224,0.65); opacity:0; animation:fadein .6s ease forwards;
+  }
+  .route-label.l1{animation-delay:1.2s;}
+  .route-label.l2{animation-delay:2.0s;}
+  .route-label.l3{animation-delay:2.8s;}
+  @keyframes draw{to{stroke-dashoffset:0;}}
+  @keyframes fadein{to{opacity:1;}}
+  @media (prefers-reduced-motion: reduce){
+    .route-path{animation:none; stroke-dashoffset:0;}
+    .route-dot, .route-label{animation:none; opacity:1;}
+  }
+
+  .stat-strip{
+    background:var(--paper); border-top:1px solid var(--line);
+    padding:34px 0;
+  }
+  .stat-strip .container{
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:24px;
+  }
+  .stat{font-family:'IBM Plex Mono', monospace;}
+  .stat .num{font-size:1.7rem; color:var(--ink); font-weight:500; display:block;}
+  .stat .lbl{font-size:0.74rem; color:var(--slate); text-transform:uppercase; letter-spacing:0.08em; opacity:0.75;}
+
+  /* ===== ABOUT / PROFIL PERUSAHAAN ===== */
+  .about{background:var(--ivory);}
+  .about-grid{
+    display:grid; grid-template-columns:0.9fr 1.1fr; gap:70px; margin-top:36px;
+  }
+  .about h2{font-size:2.1rem; margin:14px 0 20px;}
+  .profile-table{
+    width:100%; border-collapse:collapse; margin-top:8px;
+  }
+  .profile-table tr{border-bottom:1px solid var(--line);}
+  .profile-table td{padding:13px 0; font-size:0.94rem;}
+  .profile-table td:first-child{
+    font-family:'IBM Plex Mono', monospace; font-size:0.72rem;
+    color:var(--brass); text-transform:uppercase; letter-spacing:0.06em;
+    width:38%; vertical-align:top; padding-top:15px;
+  }
+  .about-desc p{margin-bottom:16px; color:var(--slate); font-size:0.98rem;}
+  .about-desc p:first-child{
+    font-size:1.15rem; color:var(--ink); font-family:'Fraunces', serif; font-weight:400;
+    line-height:1.5;
+  }
+
+  /* ===== VISI MISI ===== */
+  .vm{background:var(--ink); color:var(--paper);}
+  .vm .eyebrow{color:var(--brass);}
+  .vm h2{color:var(--ivory);}
+  .vm-grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:50px; margin-top:44px;
+  }
+  .vm-card h3{
+    color:var(--brass); font-size:0.78rem; font-family:'IBM Plex Mono', monospace;
+    text-transform:uppercase; letter-spacing:0.1em; margin-bottom:16px; font-weight:500;
+  }
+  .vm-card .visi-text{
+    font-family:'Fraunces', serif; font-size:1.5rem; font-weight:400;
+    color:var(--ivory); line-height:1.4;
+  }
+  .misi-list{list-style:none; counter-reset:misi;}
+  .misi-list li{
+    counter-increment:misi;
+    display:flex; gap:16px; padding:14px 0;
+    border-top:1px solid rgba(239,234,224,0.15);
+    font-size:0.94rem; color:rgba(239,234,224,0.85);
+  }
+  .misi-list li:last-child{border-bottom:1px solid rgba(239,234,224,0.15);}
+  .misi-list li::before{
+    content:counter(misi,decimal-leading-zero);
+    font-family:'IBM Plex Mono', monospace; color:var(--brass); font-size:0.82rem;
+    flex-shrink:0;
+  }
+
+  /* ===== LAYANAN / JASA ===== */
+  .services{background:var(--ivory);}
+  .service-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
+    background:var(--line); border:1px solid var(--line); margin-top:44px;
+  }
+  .service-card{
+    background:var(--ivory); padding:34px 26px; transition:background .25s ease;
+  }
+  .service-card:hover{background:var(--paper);}
+  .service-card .snum{
+    font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color:var(--brass);
+  }
+  .service-card h3{font-size:1.08rem; margin:16px 0 10px; font-weight:500;}
+  .service-card p{font-size:0.87rem; color:var(--slate); opacity:0.85;}
+
+  /* ===== TIM / BIODATA ANGGOTA ===== */
+  .team{background:var(--paper);}
+  .team-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:28px; margin-top:44px;
+  }
+  .member{
+    background:var(--ivory); border:1px solid var(--line); padding:26px 22px;
+  }
+  .avatar{
+    width:56px; height:56px; border-radius:50%;
+    background:var(--ink);
+    color:var(--brass); font-family:'Fraunces', serif; font-size:1.1rem;
+    display:flex; align-items:center; justify-content:center;
+    margin-bottom:18px;
+  }
+  .member h4{font-size:1.02rem; margin-bottom:2px;}
+  .member .role{
+    font-family:'IBM Plex Mono', monospace; font-size:0.7rem; color:var(--brass);
+    text-transform:uppercase; letter-spacing:0.06em; margin-bottom:12px; display:block;
+  }
+  .member .nim{font-size:0.78rem; color:var(--slate); opacity:0.7; margin-bottom:10px;}
+  .member p.desc{font-size:0.85rem; color:var(--slate); opacity:0.9;}
+
+  /* ===== ROADMAP ===== */
+  .roadmap{background:var(--ivory);}
+  .timeline{
+    position:relative; margin-top:60px; padding-left:2px;
+  }
+  .timeline::before{
+    content:""; position:absolute; left:0; top:8px; bottom:8px; width:1px;
+    background:var(--line);
+  }
+  .tl-item{
+    position:relative; padding-left:44px; padding-bottom:46px;
+  }
+  .tl-item:last-child{padding-bottom:0;}
+  .tl-item::before{
+    content:""; position:absolute; left:-5px; top:4px;
+    width:11px; height:11px; border-radius:50%;
+    background:var(--ivory); border:2px solid var(--brass);
+  }
+  .tl-year{
+    font-family:'IBM Plex Mono', monospace; color:var(--brass);
+    font-size:0.85rem; margin-bottom:6px; display:block;
+  }
+  .tl-item h4{font-size:1.15rem; margin-bottom:8px; font-weight:500;}
+  .tl-item p{font-size:0.92rem; color:var(--slate); max-width:600px;}
+
+  /* ===== CTA / KONTAK ===== */
+  .cta{background:var(--teal); color:var(--paper); text-align:center;}
+  .cta h2{color:var(--ivory); font-size:2.2rem; max-width:640px; margin:16px auto 18px;}
+  .cta p{color:rgba(239,234,224,0.8); max-width:520px; margin:0 auto 36px;}
+  .cta .btn-primary{margin:0 8px;}
+
+  .contact{background:var(--ink); color:var(--paper);}
+  .contact-grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:60px; margin-top:44px;
+  }
+  .contact-info div{margin-bottom:22px;}
+  .contact-info .lbl{
+    font-family:'IBM Plex Mono', monospace; font-size:0.7rem; color:var(--brass);
+    text-transform:uppercase; letter-spacing:0.08em; margin-bottom:6px; display:block;
+  }
+  .contact-info .val{font-size:1rem; color:var(--ivory);}
+  form{display:flex; flex-direction:column; gap:14px;}
+  form input, form textarea{
+    background:transparent; border:none; border-bottom:1px solid rgba(239,234,224,0.28);
+    color:var(--ivory); padding:12px 2px; font-family:'Inter', sans-serif; font-size:0.94rem;
+    outline:none; transition:border-color .2s ease;
+  }
+  form input::placeholder, form textarea::placeholder{color:rgba(239,234,224,0.45);}
+  form input:focus, form textarea:focus{border-color:var(--brass);}
+  form button{
+    margin-top:10px; align-self:flex-start;
+    background:var(--brass); color:var(--ink); border:none;
+    padding:13px 28px; font-weight:600; font-size:0.9rem; border-radius:2px;
+    cursor:pointer; transition:background .2s ease;
+  }
+  form button:hover{background:#c69a5f;}
+
+  footer{
+    background:var(--ink); border-top:1px solid rgba(239,234,224,0.12);
+    padding:26px 0; text-align:center; color:rgba(239,234,224,0.55); font-size:0.82rem;
+  }
+
+  @media (max-width:860px){
+    .nav-links{display:none;}
+    .hero .container{grid-template-columns:1fr;}
+    .route-wrap{height:260px; order:-1;}
+    .about-grid, .vm-grid, .contact-grid{grid-template-columns:1fr;}
+    .service-grid{grid-template-columns:1fr 1fr;}
+    .team-grid{grid-template-columns:1fr 1fr;}
+    section{padding:70px 0;}
+  }
+  @media (max-width:520px){
+    .service-grid, .team-grid{grid-template-columns:1fr;}
+    .stat-strip .container{flex-direction:column; gap:16px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo">Alvanta corporation gen-z<span>.</span></div>
+    <div class="nav-links">
+      <a href="#profil">Profil</a>
+      <a href="#visi-misi">Visi &amp; Misi</a>
+      <a href="#layanan">Layanan</a>
+      <a href="#tim">Tim</a>
+      <a href="#roadmap">Rencana</a>
+    </div>
+    <a href="#kontak" class="nav-cta">Hubungi Kami</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <div>
+      <p class="eyebrow hero-eyebrow">Alvanta corporation gen-z · Sejak 2021</p>
+      <h1>Arah yang jelas untuk <em>keputusan bisnis</em> yang berani.</h1>
+      <p class="lead">Kami membantu UMKM dan startup menyusun strategi, membaca data, dan mengambil langkah yang tepat — dari perencanaan hingga eksekusi.</p>
+      <div class="hero-actions">
+        <a href="#kontak" class="btn-primary">Mulai Kerja Sama</a>
+        <a href="#layanan" class="btn-ghost">Lihat Layanan</a>
+      </div>
+    </div>
+    <div class="route-wrap">
+      <svg viewBox="0 0 320 420" xmlns="http://www.w3.org/2000/svg">
+        <path class="route-path" d="M40 40 C 40 140, 260 100, 220 200 S 60 320, 150 380" />
+        <circle class="route-dot d1" cx="40" cy="40" r="5"/>
+        <text class="route-label l1" x="55" y="44">Analisis</text>
+        <circle class="route-dot d2" cx="220" cy="200" r="5"/>
+        <text class="route-label l2" x="235" y="204">Strategi</text>
+        <circle class="route-dot d3" cx="150" cy="380" r="5"/>
+        <text class="route-label l3" x="165" y="384">Pertumbuhan</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<div class="stat-strip">
+  <div class="container">
+    <div class="stat"><span class="num">80+</span><span class="lbl">Klien Terbantu</span></div>
+    <div class="stat"><span class="num">4</span><span class="lbl">Tahun Beroperasi</span></div>
+    <div class="stat"><span class="num">12</span><span class="lbl">Konsultan Aktif</span></div>
+    <div class="stat"><span class="num">6</span><span class="lbl">Kota Terjangkau</span></div>
+  </div>
+</div>
+
+<section class="about" id="profil">
+  <div class="container">
+    <p class="eyebrow">Profil Perusahaan</p>
+    <h2>Tentang Ranata Consulting</h2>
+    <div class="about-grid">
+      <table class="profile-table">
+        <tr><td>Nama</td><td>PT Alvanta corporation gen-z</td></tr>
+        <tr><td>Bidang Usaha</td><td>Konsultan Strategi &amp; Manajemen Bisnis</td></tr>
+        <tr><td>Didirikan</td><td>17 Agustus 2021</td></tr>
+        <tr><td>Alamat</td><td>Jl. Sudirman Kav. 45, Jakarta Selatan, DKI Jakarta</td></tr>
+        <tr><td>Email</td><td>halo@Alvantacorporationgen-z.id</td></tr>
+        <tr><td>Telepon</td><td>(021) 555-0192</td></tr>
+      </table>
+      <div class="about-desc">
+        <p>Alvanta corporation gen-z lahir dari keresahan sederhana: banyak usaha kecil yang punya semangat besar, tapi kesulitan menerjemahkannya menjadi rencana yang terukur.</p>
+        <p>Kami hadir sebagai mitra strategis bagi UMKM, startup, dan bisnis keluarga yang ingin naik kelas — membantu mulai dari riset pasar, perencanaan keuangan, hingga transformasi digital, dengan pendekatan yang membumi dan berbasis data.</p>
+        <p>Tim kami terdiri dari konsultan lintas disiplin: bisnis, keuangan, dan teknologi, yang bekerja langsung bersama klien, bukan sekadar memberi laporan dari kejauhan.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="vm" id="visi-misi">
+  <div class="container">
+    <p class="eyebrow">Arah Kami</p>
+    <h2>Visi &amp; Misi</h2>
+    <div class="vm-grid">
+      <div class="vm-card">
+        <h3>Visi</h3>
+        <p class="visi-text">Menjadi mitra konsultan bisnis paling dipercaya bagi UMKM dan startup Indonesia dalam mengambil keputusan strategis berbasis data pada tahun 2030.</p>
+      </div>
+      <div class="vm-card">
+        <h3>Misi</h3>
+        <ul class="misi-list">
+          <li>Memberikan solusi strategi bisnis yang relevan dan tepat sasaran bagi setiap klien.</li>
+          <li>Mengembangkan kapasitas SDM klien melalui pendampingan, bukan hanya rekomendasi.</li>
+          <li>Membangun ekosistem kolaborasi antara UMKM, startup, dan investor.</li>
+          <li>Mendorong adopsi teknologi dan data dalam pengambilan keputusan bisnis klien.</li>
+          <li>Menjaga integritas dan transparansi dalam setiap kerja sama.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="layanan">
+  <div class="container">
+    <p class="eyebrow">Layanan Kami</p>
+    <h2>Jasa yang Kami Tawarkan</h2>
+    <div class="service-grid">
+      <div class="service-card">
+        <span class="snum">01</span>
+        <h3>Perencanaan Strategis</h3>
+        <p>Menyusun roadmap bisnis, model operasi, dan target pertumbuhan yang realistis.</p>
+      </div>
+      <div class="service-card">
+        <span class="snum">02</span>
+        <h3>Konsultasi Keuangan</h3>
+        <p>Analisis arus kas, struktur modal, dan kesiapan pendanaan untuk skala bisnis.</p>
+      </div>
+      <div class="service-card">
+        <span class="snum">03</span>
+        <h3>Riset Pasar</h3>
+        <p>Memahami perilaku konsumen dan posisi kompetitor sebelum mengambil langkah besar.</p>
+      </div>
+      <div class="service-card">
+        <span class="snum">04</span>
+        <h3>Transformasi Digital</h3>
+        <p>Mendampingi adopsi sistem dan alat digital agar operasional lebih efisien.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="team" id="tim">
+  <div class="container">
+    <p class="eyebrow">Tim Kami</p>
+    <h2>Orang-Orang di Balik Ranata</h2>
+    <div class="team-grid">
+      <div class="member">
+        <div class="avatar">SO</div>
+        <h4>suryanto</h4>
+        <span class="role">Founder &amp; CEO</span>
+        <div class="nim">NIM 202343500533</div>
+        <p class="desc">Memimpin arah strategis perusahaan dan menjalin kemitraan dengan klien utama.</p>
+      </div>
+      <div class="member">
+        <div class="avatar">MM</div>
+        <h4>muhammad muzacky</h4>
+        <span class="role">Chief Financial Officer</span>
+        <div class="nim">NIM 202343500522</div>
+        <p class="desc">Mengelola analisis keuangan dan strategi pendanaan untuk proyek klien.</p>
+      </div>
+      <div class="member">
+        <div class="avatar">NU</div>
+        <h4>nindyah restu azzahra udayana</h4>
+        <span class="role">Head of Research</span>
+        <div class="nim">NIM 202343500550</div>
+        <p class="desc">Bertanggung jawab atas riset pasar dan analisis data untuk rekomendasi strategi.</p>
+      </div>
+      <div class="member">
+        <div class="avatar">MR</div>
+        <h4>muhammad ario</h4>
+        <span class="role">Marketing &amp; Client Relations</span>
+        <div class="nim">NIM 202343500497</div>
+        <p class="desc">Mengelola komunikasi klien dan strategi pemasaran perusahaan.</p>
+      </div>
+	  <div class="member">
+        <div class="avatar">SK</div>
+        <h4>sabda khilmawan</h4>
+        <span class="role"> Business Development Officer </span>
+        <div class="nim">NIM 202343500496</div>
+        <p class="desc">Bertugas mencari peluang kerja sama dan pasar baru.</p>
+    </div>
+	<div class="member">
+        <div class="avatar">SK</div>
+        <h4>fadhil m andriyansyah</h4>
+        <span class="role"> teknisi </span>
+        <div class="nim">NIM 202343500474</div>
+        <p class="desc">Bertugas IT Development.</p>
+  </div>
+</section>
+
+<section class="roadmap" id="roadmap">
+  <div class="container">
+    <p class="eyebrow">Rencana Masa Depan</p>
+    <h2>Peta Jalan Alvanta corporation gen-z</h2>
+    <div class="timeline">
+      <div class="tl-item">
+        <span class="tl-year">2026</span>
+        <h4>Ekspansi Layanan Digital</h4>
+        <p>Meluncurkan paket konsultasi online agar bisa menjangkau klien di luar Jabodetabek.</p>
+      </div>
+      <div class="tl-item">
+        <span class="tl-year">2027</span>
+        <h4>Kemitraan dengan Perbankan &amp; Investor</h4>
+        <p>Membangun jaringan pendanaan agar klien lebih mudah terhubung dengan modal usaha.</p>
+      </div>
+      <div class="tl-item">
+        <span class="tl-year">2028</span>
+        <h4>Pembukaan Kantor Cabang</h4>
+        <p>Membuka kantor di Surabaya dan Bandung untuk mendekatkan layanan ke klien daerah.</p>
+      </div>
+      <div class="tl-item">
+        <span class="tl-year">2030</span>
+        <h4>Menjadi Konsultan Rujukan Nasional</h4>
+        <p>Menjadi mitra strategis nomor satu bagi UMKM dan startup di seluruh Indonesia.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="container">
+    <p class="eyebrow" style="justify-content:center; color:var(--brass);">Siap Bertumbuh?</p>
+    <h2>Mari diskusikan langkah strategis berikutnya untuk bisnis Anda.</h2>
+    <p>Konsultasi awal gratis selama 30 menit — tanpa komitmen.</p>
+    <a href="#kontak" class="btn-primary">Jadwalkan Konsultasi</a>
+  </div>
+</section>
+
+<section class="contact" id="kontak">
+  <div class="container">
+    <p class="eyebrow">Kontak</p>
+    <h2 style="color:var(--ivory);">Bekerja Sama dengan Kami</h2>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div>
+          <span class="lbl">Email</span>
+          <span class="val">halo@Alvantacorporationgen-z.id</span>
+        </div>
+        <div>
+          <span class="lbl">Telepon / WhatsApp</span>
+          <span class="val">+62 872-4455-3389</span>
+        </div>
+        <div>
+          <span class="lbl">Alamat</span>
+          <span class="val">Jl. Sudirman Kav. 45, Jakarta Selatan</span>
+        </div>
+        <div>
+          <span class="lbl">Jam Operasional</span>
+          <span class="val">Senin – Jumat, 08.00 – 17.00 WIB</span>
+        </div>
+      </div>
+      <form onsubmit="event.preventDefault(); document.getElementById('form-msg').style.display='block'; this.reset();">
+        <input type="text" placeholder="Nama Lengkap" required>
+        <input type="email" placeholder="Email" required>
+        <input type="text" placeholder="Nama Perusahaan (opsional)">
+        <textarea rows="3" placeholder="Ceritakan kebutuhan bisnis Anda..." required></textarea>
+        <button type="submit">Kirim Pesan</button>
+        <p id="form-msg" style="display:none; color:var(--brass); font-size:0.85rem;">Terima kasih! Pesan Anda telah terkirim (contoh tampilan).</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  &copy; 2026 Alvanta corporation gen-z. Dibuat sebagai Tugas Besar Kelompok.
+</footer>
+
+</body>
+</html>
